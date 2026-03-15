@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>令和8年度 寺師自治会 年間行事一覧</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+  :root {
+    --header-bg: #1a2744;
+    --border: #c8ccd8;
+    --radius: 12px;
+    --shigen: #1a6fc4;
+    --shigen-bg: #eef4ff;
+    --gomi: #2a9d2a;
+    --gomi-bg: #edfaed;
+    --jigyou: #7c3aed;
+    --jigyou-bg: #f3f0ff;
+    --souji: #b45309;
+    --souji-bg: #fef3c7;
+    --sodai: #0e7490;
+    --sodai-bg: #e0f2fe;
+    --text: #1a1a2e;
+    --text-light: #5a6380;
+    --row-alt: #f7f8fc;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #eef0f8;
+    color: var(--text);
+    padding: 14px;
+    min-height: 100vh;
+  }
+
+  /* ヘッダー */
+  .header {
+    background: var(--header-bg);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .header-title {
+    font-size: 1.55rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+  }
+  .header-sub {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    margin-top: 4px;
+  }
+
+  /* 凡例 */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .ldot { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; }
+
+  /* 表 */
+  .table-wrap {
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+    margin-bottom: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead tr {
+    background: var(--header-bg);
+    color: #fff;
+  }
+  thead th {
+    padding: 12px 8px;
+    font-size: 1rem;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 0.04em;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  thead th:last-child { border-right: none; }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  tbody tr:nth-child(even) { background: var(--row-alt); }
+  tbody tr:last-child { border-bottom: none; }
+
+  /* 月区切り行 */
+  tr.month-sep td {
+    background: #e8eaf6;
+    color: var(--header-bg);
+    font-size: 1.05rem;
+    font-weight: 900;
+    padding: 8px 14px;
+    letter-spacing: 0.08em;
+    border-bottom: 2px solid #b0b8d8;
+  }
+
+  td {
+    padding: 10px 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    vertical-align: middle;
+    border-right: 1px solid var(--border);
+    line-height: 1.4;
+  }
+  td:last-child { border-right: none; }
+
+  .td-date { text-align: center; white-space: nowrap; min-width: 72px; font-size: 1.05rem; }
+  .td-dow  { text-align: center; min-width: 32px; font-size: 1rem; font-weight: 900; }
+  .td-time { text-align: center; white-space: nowrap; min-width: 80px; font-size: 0.92rem; color: var(--text-light); }
+  .td-content { font-size: 1rem; font-weight: 700; }
+
+  .dow-sun { color: #c0200a; }
+  .dow-sat { color: #1a6fc4; }
+
+  /* カテゴリバッジ */
+  .cat {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-size: 0.78rem;
+    font-weight: 900;
+    margin-right: 5px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .cat-shigen  { background: var(--shigen-bg);  color: var(--shigen); }
+  .cat-gomi    { background: var(--gomi-bg);    color: var(--gomi); }
+  .cat-souji   { background: var(--souji-bg);   color: var(--souji); }
+  .cat-sodai   { background: var(--sodai-bg);   color: var(--sodai); }
+  .cat-jigyou  { background: var(--jigyou-bg);  color: var(--jigyou); }
+
+  /* 通年行事 */
+  .nenkan-box {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    margin-bottom: 14px;
+  }
+  .nenkan-title {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--header-bg);
+    border-left: 4px solid var(--header-bg);
+    padding-left: 10px;
+    margin-bottom: 10px;
+  }
+  .nenkan-item {
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nenkan-item:last-child { border-bottom: none; }
+
+  .footer-note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-light);
+    padding: 4px 0 8px;
+  }
+
+  @media (max-width: 480px) {
+    .header-title { font-size: 1.25rem; }
+    td { font-size: 0.93rem; padding: 8px 5px; }
+    .td-time { font-size: 0.82rem; }
+    .cat { font-size: 0.72rem; }
+    thead th { font-size: 0.9rem; padding: 10px 5px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-title">📋 令和8年度　寺師自治会　年間行事一覧</div>
+  <div class="header-sub">令和7年度のサイクルをもとに作成（※実際の日程は自治会にご確認ください）</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="ldot" style="background:var(--shigen)"></span>資源物・不燃ごみ収集</div>
+  <div class="legend-item"><span class="ldot" style="background:var(--sodai)"></span>粗大ごみ収集</div>
+  <div class="legend-item"><span class="ldot" style="background:var(--souji)"></span>清掃・奉仕活動</div>
+  <div class="legend-item"><span class="ldot" style="background:var(--jigyou)"></span>自治会行事・会議</div>
+  <div class="legend-item"><span class="ldot" style="background:var(--gomi)"></span>その他行事</div>
+</div>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>日　時</th>
+      <th>曜日</th>
+      <th>時　間</th>
+      <th>内　容</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+  </tbody>
+</table>
+</div>
+
+<div class="nenkan-box">
+  <div class="nenkan-title">📅 通年・定期行事（4月〜翌3月）</div>
+  <div class="nenkan-item">🔵 高齢者ふれあいいきいきサロン（毎月2回）</div>
+  <div class="nenkan-item">🟣 三船地区コミュニティ協議会専門部会事業</div>
+</div>
+
+<div class="footer-note">
+  ※令和7年度の行事サイクルをもとに令和8年度の日程を推定しています。変更になる場合があります。<br>
+  詳細は自治会長にご確認ください。
+</div>
+
+<script>
+// ============================================================
+// 令和8年度（2026年4月〜2027年3月）行事データ
+// パターン: 令和7年度と同じ週サイクルで計算
+// ============================================================
+
+// 第N曜日の日付を返す (year, month:1-12, n:第N, dow:0日〜6土)
+function getNthDow(year, month, n, dow) {
+  let count = 0;
+  const days = new Date(year, month, 0).getDate();
+  for (let d = 1; d <= days; d++) {
+    if (new Date(year, month - 1, d).getDay() === dow) {
+      count++;
+      if (count === n) return d;
+    }
+  }
+  return -1;
+}
+
+// 最終曜日の日付
+function getLastDow(year, month, dow) {
+  const days = new Date(year, month, 0).getDate();
+  let last = -1;
+  for (let d = 1; d <= days; d++) {
+    if (new Date(year, month - 1, d).getDay() === dow) last = d;
+  }
+  return last;
+}
+
+const DOW_NAME = ['日','月','火','水','木','金','土'];
+const MONTH_NAME = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+// カテゴリ定義
+const CAT = {
+  shigen:  { label: '資源物・ごみ', cls: 'cat-shigen' },
+  sodai:   { label: '粗大ごみ',     cls: 'cat-sodai'  },
+  souji:   { label: '清掃・奉仕',   cls: 'cat-souji'  },
+  jigyou:  { label: '自治会行事',   cls: 'cat-jigyou' },
+  other:   { label: 'その他',        cls: 'cat-gomi'   },
+};
+
+// 行事リスト生成
+// R8年度: 2026年4月〜2027年3月
+function buildEvents() {
+  const events = [];
+
+  function add(year, month, day, time, content, cat) {
+    const dow = new Date(year, month - 1, day).getDay();
+    events.push({ year, month, day, dow, time, content, cat });
+  }
+
+  function addN(year, month, n, dow, time, content, cat) {
+    const d = getNthDow(year, month, n, dow);
+    if (d > 0) add(year, month, d, time, content, cat);
+  }
+
+  function addLast(year, month, dow, time, content, cat) {
+    const d = getLastDow(year, month, dow);
+    if (d > 0) add(year, month, d, time, content, cat);
+  }
+
+  // ── 4月（2026）──
+  addN(2026, 4, 1, 6, '18時30分〜', '第1回審議委員会', 'jigyou');         // 第1土
+  addN(2026, 4, 2, 0, '12時〜', '新旧役員引き継ぎ会', 'jigyou');          // 第2日
+  addN(2026, 4, 3, 0, '7時〜8時', '資源物・不燃ごみ（赤袋）収集', 'shigen'); // 第3日 ※R7は4/13(第2日)→R8は第3日曜に統一
+  addN(2026, 4, 4, 0, '7時〜8時', '各班道路清掃・子供会空き缶拾い', 'souji'); // 第4日
+
+  // ── 5月（2026）──
+  addN(2026, 5, 1, 0, '7時〜8時 / 8時30分〜', '粗大ごみ収集（公民館1ヶ所）当番は班長さんのみ・用水路溝上げ', 'sodai'); // 第1日
+  addN(2026, 5, 3, 0, '10時〜', '花菖蒲まつりオープニング', 'other');       // 第3日
+  addN(2026, 5, 3, 0, '7時〜8時', '資源物・不燃ごみ（赤袋）収集', 'shigen'); // ※5月は第3日と第4日の2回
+  addN(2026, 5, 4, 0, '7時〜8時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+
+  // ── 6月（2026）──
+  addN(2026, 6, 3, 0, '7時〜8時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+  addN(2026, 6, 4, 0, '7時〜8時', '各班道路清掃・子供会空き缶拾い', 'souji');
+
+  // ── 7月（2026）──
+  addN(2026, 7, 2, 0, '7時〜8時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+  addN(2026, 7, 3, 0, '7時〜8時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+
+  // ── 8月（2026）──
+  addN(2026, 8, 2, 6, '18時30分〜', '第2回審議委員会（敬老会・グランドゴルフ大会について）', 'jigyou');
+  addN(2026, 8, 4, 0, '7時〜8時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+
+  // ── 9月（2026）──
+  addN(2026, 9, 2, 0, '7時〜8時', '大王神社清掃', 'souji');
+  addN(2026, 9, 2, 1, '11時〜', '寺師自治会敬老会', 'jigyou');             // 第2月曜
+  addN(2026, 9, 3, 0, '7時〜8時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+
+  // ── 10月（2026）──
+  addN(2026, 10, 2, 0, '8時〜9時', '粗大ごみ収集（公民館1ヶ所）当番は班長さんのみ', 'sodai');
+  addN(2026, 10, 4, 0, '8時〜9時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+
+  // ── 11月（2026）──
+  addN(2026, 11, 3, 0, '8時30分〜', '寺師自治会グランドゴルフ大会（畜産センター）', 'jigyou');
+  addN(2026, 11, 4, 0, '8時〜9時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+
+  // ── 12月（2026）──
+  addN(2026, 12, 1, 0, '8時〜9時', '各班道路清掃・子供会空き缶拾い', 'souji');
+  addN(2026, 12, 2, 0, '9時〜', '大王神社清掃・しめ縄作り・祭り（氏子）', 'souji');
+  addN(2026, 12, 3, 0, '8時〜9時 / 10時〜', '資源物・不燃ごみ（赤袋）収集 ／ 鬼火焚き（子供会及び自治会員）準備', 'shigen');
+
+  // ── 1月（2027）──
+  addN(2027, 1, 1, 0, '18時〜', '鬼火焚き（子供会及び自治会員）', 'jigyou');
+  addN(2027, 1, 2, 0, '11時〜', '公民館お寺の報恩講', 'other');
+  addN(2027, 1, 3, 0, '13時〜', '田んぼの野焼き', 'other');
+  addN(2027, 1, 4, 0, '8時〜9時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+
+  // ── 2月（2027）──
+  addN(2027, 2, 4, 0, '8時〜9時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+
+  // ── 3月（2027）──
+  addN(2027, 3, 1, 6, '18時30分〜', '第3回審議委員会（総会等について）', 'jigyou');
+  addN(2027, 3, 4, 0, '8時〜9時', '資源物・不燃ごみ（赤袋）収集', 'shigen');
+  addLast(2027, 3, 0, '10時〜', '令和8年度寺師自治会総会', 'jigyou');
+
+  // 日付順にソート
+  events.sort((a, b) => {
+    const da = new Date(a.year, a.month - 1, a.day);
+    const db = new Date(b.year, b.month - 1, b.day);
+    return da - db;
+  });
+
+  return events;
+}
+
+function render() {
+  const events = buildEvents();
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+
+  let lastMonth = null;
+
+  events.forEach(ev => {
+    const monthKey = `${ev.year}-${ev.month}`;
+
+    // 月区切り
+    if (monthKey !== lastMonth) {
+      lastMonth = monthKey;
+      const sepRow = document.createElement('tr');
+      sepRow.className = 'month-sep';
+      const sepTd = document.createElement('td');
+      sepTd.colSpan = 4;
+
+      // 元号表示
+      const rYear = ev.year === 2026 ? '令和8年' : '令和9年';
+      sepTd.textContent = `── ${rYear} ${MONTH_NAME[ev.month - 1]} ──`;
+      sepRow.appendChild(sepTd);
+      tbody.appendChild(sepRow);
+    }
+
+    const tr = document.createElement('tr');
+
+    // 日付
+    const tdDate = document.createElement('td');
+    tdDate.className = 'td-date';
+    const rYear = ev.year === 2026 ? 'R8' : 'R9';
+    tdDate.textContent = `${ev.month}月${ev.day}日`;
+    tr.appendChild(tdDate);
+
+    // 曜日
+    const tdDow = document.createElement('td');
+    tdDow.className = 'td-dow' + (ev.dow === 0 ? ' dow-sun' : ev.dow === 6 ? ' dow-sat' : '');
+    tdDow.textContent = DOW_NAME[ev.dow];
+    tr.appendChild(tdDow);
+
+    // 時間
+    const tdTime = document.createElement('td');
+    tdTime.className = 'td-time';
+    tdTime.textContent = ev.time;
+    tr.appendChild(tdTime);
+
+    // 内容
+    const tdContent = document.createElement('td');
+    tdContent.className = 'td-content';
+    const cat = CAT[ev.cat];
+    tdContent.innerHTML = `<span class="cat ${cat.cls}">${cat.label}</span>${ev.content}`;
+    tr.appendChild(tdContent);
+
+    tbody.appendChild(tr);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
