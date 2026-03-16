@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>令和8年度 寺師自治会事業（行事）</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+:root {
+  --header-bg: #1a2744;
+  --accent:    #c0392b;
+  --blue:      #1a4fa0;
+  --green:     #1a7a3a;
+  --orange:    #c05c00;
+  --purple:    #6a1a8a;
+  --border:    #d8dce8;
+  --bg:        #eef0f8;
+  --card:      #ffffff;
+  --text:      #1a1a2e;
+  --text-mid:  #4a5270;
+  --text-light:#7a8090;
+  --radius:    14px;
+  --shadow:    0 3px 14px rgba(0,0,0,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 14px;
+  min-height: 100vh;
+}
+
+/* ヘッダー */
+.header {
+  background: var(--header-bg);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  margin-bottom: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.header h1 {
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+.header-sub {
+  font-size: 0.88rem;
+  opacity: 0.75;
+  margin-top: 6px;
+}
+
+/* テーブルラッパー */
+.table-wrapper {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+/* ヘッダー行 */
+thead tr {
+  background: var(--header-bg);
+  color: #fff;
+}
+thead th {
+  padding: 14px 10px;
+  font-size: 1rem;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+/* カラム幅 */
+.col-date    { width: 15%; }
+.col-day     { width: 8%;  }
+.col-time    { width: 25%; }
+.col-content { width: 52%; }
+
+/* 月区切り行 */
+.month-row td {
+  background: var(--header-bg);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 900;
+  padding: 10px 14px;
+  letter-spacing: 0.06em;
+  text-align: left;
+}
+
+/* データ行 */
+tbody tr:not(.month-row) {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+tbody tr:not(.month-row):last-child {
+  border-bottom: none;
+}
+tbody tr:not(.month-row):hover {
+  background: #f0f4ff;
+}
+
+tbody td {
+  padding: 12px 10px;
+  vertical-align: middle;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* 日付 */
+td.col-date {
+  text-align: center;
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* 曜日 */
+td.col-day {
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.05rem;
+}
+.sun { color: var(--accent); }
+.sat { color: var(--blue); }
+.mon { color: var(--text-mid); }
+
+/* 時間 */
+td.col-time {
+  text-align: center;
+  color: var(--text-mid);
+  font-size: 0.88rem;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+
+/* カテゴリバッジ */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-right: 6px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.badge-shigen   { background: #fff3e0; color: var(--orange); border: 1px solid #f0c080; }
+.badge-soda     { background: #e8f3ed; color: var(--green);  border: 1px solid #90c8a0; }
+.badge-souji    { background: #e8f2ff; color: var(--blue);   border: 1px solid #90b8e8; }
+.badge-jichikai { background: #ffeaea; color: var(--accent); border: 1px solid #f0a090; }
+.badge-other    { background: #f0e8ff; color: var(--purple); border: 1px solid #c0a0e0; }
+
+/* コンテンツテキスト */
+.content-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* フッター */
+.memo {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  border-left: 5px solid var(--blue);
+  margin-bottom: 14px;
+}
+.memo h3 {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--blue);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.memo ul { list-style: none; padding: 0; }
+.memo ul li {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-mid);
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.memo ul li:last-child { border-bottom: none; }
+.memo ul li::before { content: '📌'; font-size: 1rem; }
+
+.footer-note {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  padding: 4px 0 10px;
+  line-height: 1.7;
+}
+
+@media (max-width: 480px) {
+  table { font-size: 0.85rem; }
+  thead th { padding: 10px 6px; font-size: 0.85rem; }
+  tbody td { padding: 10px 6px; font-size: 0.85rem; }
+  .badge { font-size: 0.7rem; padding: 2px 6px; }
+  .header h1 { font-size: 1.15rem; }
+  td.col-time { font-size: 0.8rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📅 令和8年度<br>寺師自治会事業（行事）</h1>
+  <div class="header-sub">令和8年4月〜令和9年3月</div>
+</div>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th class="col-date">日付</th>
+        <th class="col-day">曜日</th>
+        <th class="col-time">時間</th>
+        <th class="col-content">実施内容</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- 4月 -->
+      <tr class="month-row"><td colspan="4">🌸 4月</td></tr>
+      <tr>
+        <td class="col-date">4月4日</td>
+        <td class="col-day sat">土</td>
+        <td class="col-time">18:30〜</td>
+        <td><span class="badge badge-jichikai">自治会</span><span class="content-text">第1回審議委員会</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">4月12日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">12:00〜</td>
+        <td><span class="badge badge-jichikai">自治会</span><span class="content-text">新旧役員引き継ぎ会</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">4月26日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">7:00〜8:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+
+      <!-- 5月 -->
+      <tr class="month-row"><td colspan="4">🌿 5月</td></tr>
+      <tr>
+        <td class="col-date">5月3日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">7:00〜8:00</td>
+        <td><span class="badge badge-souji">清掃</span><span class="content-text">各班道路清掃・子供会空き缶拾い</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">5月10日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">7:00〜8:00<br>8:30〜</td>
+        <td><span class="badge badge-soda">粗大</span><span class="content-text">粗大ごみ収集・用水路溝上げ</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">5月24日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">10:00〜</td>
+        <td><span class="badge badge-other">行事</span><span class="content-text">花菖蒲まつりオープニングセレモニー</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">5月24日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">7:00〜8:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+
+      <!-- 6月 -->
+      <tr class="month-row"><td colspan="4">☔ 6月</td></tr>
+      <tr>
+        <td class="col-date">6月21日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">7:00〜8:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+
+      <!-- 7月 -->
+      <tr class="month-row"><td colspan="4">🌻 7月</td></tr>
+      <tr>
+        <td class="col-date">7月12日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">7:00〜8:00</td>
+        <td><span class="badge badge-souji">清掃</span><span class="content-text">各班道路清掃・子供会空き缶拾い</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">7月26日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">7:00〜8:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+
+      <!-- 8月 -->
+      <tr class="month-row"><td colspan="4">🌞 8月</td></tr>
+      <tr>
+        <td class="col-date">8月8日</td>
+        <td class="col-day sat">土</td>
+        <td class="col-time">18:30〜</td>
+        <td><span class="badge badge-jichikai">自治会</span><span class="content-text">第2回審議委員会（敬老会・Gゴルフ大会）</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">8月23日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">7:00〜8:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+
+      <!-- 9月 -->
+      <tr class="month-row"><td colspan="4">🍂 9月</td></tr>
+      <tr>
+        <td class="col-date">9月20日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">7:00〜8:00</td>
+        <td><span class="badge badge-souji">清掃</span><span class="content-text">大王神社清掃</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">9月21日</td>
+        <td class="col-day mon">月</td>
+        <td class="col-time">11:00〜</td>
+        <td><span class="badge badge-jichikai">自治会</span><span class="content-text">自治会敬老会</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">9月20日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">7:00〜8:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+
+      <!-- 10月 -->
+      <tr class="month-row"><td colspan="4">🍁 10月</td></tr>
+      <tr>
+        <td class="col-date">10月11日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">8:00〜9:00</td>
+        <td><span class="badge badge-soda">粗大</span><span class="content-text">粗大ごみ収集</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">10月25日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">8:00〜9:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+
+      <!-- 11月 -->
+      <tr class="month-row"><td colspan="4">🍂 11月</td></tr>
+      <tr>
+        <td class="col-date">11月15日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">8:00〜12:00</td>
+        <td><span class="badge badge-jichikai">自治会</span><span class="content-text">自治会Gゴルフ大会（畜産センター）</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">11月22日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">8:00〜9:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+
+      <!-- 12月 -->
+      <tr class="month-row"><td colspan="4">❄️ 12月</td></tr>
+      <tr>
+        <td class="col-date">12月6日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">8:00〜9:00</td>
+        <td><span class="badge badge-souji">清掃</span><span class="content-text">各班道路清掃・子供会空き缶拾い</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">12月13日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">9:00〜</td>
+        <td><span class="badge badge-other">行事</span><span class="content-text">大王神社清掃・しめ縄作り・祭り（氏子）</span></td>
+      </tr>
+      <tr>
+        <td class="col-date" rowspan="2">12月22日</td>
+        <td class="col-day sun" rowspan="2">日</td>
+        <td class="col-time">8:00〜9:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+      <tr>
+        <td class="col-time">10:00〜</td>
+        <td><span class="badge badge-other">行事</span><span class="content-text">鬼火焚き（子供会及び自治会員）準備</span></td>
+      </tr>
+
+      <!-- 1月 -->
+      <tr class="month-row"><td colspan="4">🎍 1月</td></tr>
+      <tr>
+        <td class="col-date">1月9日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">18:00〜</td>
+        <td><span class="badge badge-other">行事</span><span class="content-text">鬼火焚き（子供会及び自治会員）</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">1月10日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">11:00〜</td>
+        <td><span class="badge badge-other">行事</span><span class="content-text">公民館お寺報恩講</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">1月17日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">13:00〜</td>
+        <td><span class="badge badge-other">行事</span><span class="content-text">田んぼ野焼き</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">1月24日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">8:00〜9:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+
+      <!-- 2月 -->
+      <tr class="month-row"><td colspan="4">❄️ 2月</td></tr>
+      <tr>
+        <td class="col-date">2月21日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">8:00〜9:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+
+      <!-- 3月 -->
+      <tr class="month-row"><td colspan="4">🌸 3月</td></tr>
+      <tr>
+        <td class="col-date">3月6日</td>
+        <td class="col-day sat">土</td>
+        <td class="col-time">18:30〜</td>
+        <td><span class="badge badge-jichikai">自治会</span><span class="content-text">第3回審議委員会</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">3月21日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">8:00〜9:00</td>
+        <td><span class="badge badge-shigen">資源物</span><span class="content-text">資源物・不燃ごみ（赤袋）収集</span></td>
+      </tr>
+      <tr>
+        <td class="col-date">3月28日</td>
+        <td class="col-day sun">日</td>
+        <td class="col-time">10:00〜</td>
+        <td><span class="badge badge-jichikai">自治会</span><span class="content-text">令和7年度自治会総会</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div class="memo">
+  <h3>📌 毎月の活動</h3>
+  <ul>
+    <li>高齢者ふれあいいきいきサロン（毎月2回）</li>
+    <li>三船校区コミュニティー協議</li>
+  </ul>
+</div>
+
+<div class="footer-note">
+  ※日程は変更になる場合があります。詳細は自治会からのお知らせをご確認ください。
+</div>
+
+</body>
+</html>
